@@ -1,44 +1,23 @@
 import React from 'react';
 import Like from './common/Like';
+import Table from './common/Table';
+import { Link } from 'react-router-dom';
 
-const MoviesTable = (props) => {
+const MoviesTable = ({ paginatedMovies, onDelete, onLike, onSort, sortColumn }) => {
 
-    const { paginatedMovies, onDelete, onLike, onSort, sortColumn } = props
-
-    const raiseSort = (headings) => {
-        const newSortColumn = { ...sortColumn }
-        if (newSortColumn.path === headings) {
-            newSortColumn.order = newSortColumn.order === 'asc' ? 'desc' : 'asc'
-        } else {
-            newSortColumn.path = headings;
-            newSortColumn.order = 'asc'
-        }
-        onSort(newSortColumn);
-    }
+    const columns = [{ header: 'title', label: 'Title', content: m=> <Link to={`/movies/${m._id}`}>{m.title}</Link>},
+    { header: 'genre.name', label: 'Genre' },
+    { header: 'numberInStock', label: 'Stock' },
+    { header: 'dailyRentalRate', label: 'Rate' },
+    { key: 'like', content: m => <Like liked={m.liked} onClick={() => onLike(m)} /> },
+    { key: 'delete', content: m => <button onClick={() => onDelete(m)} className="btn btn-danger">Delete</button> },]
 
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th onClick={() => raiseSort('title')}>Title</th>
-                    <th onClick={() => raiseSort('genre.name')}>Genre</th>
-                    <th onClick={() => raiseSort('numberInStock')}>Stock</th>
-                    <th onClick={() => raiseSort('dailyRentalRate')}>Rate</th>
-                </tr>
-            </thead>
-            <tbody>
-                {paginatedMovies.map(m => <tr key={m._id}>
-                    <td>{m.title}</td>
-                    <td>{m.genre.name}</td>
-                    <td>{m.numberInStock}</td>
-                    <td>{m.dailyRentalRate}</td>
-                    <td><Like liked={m.liked}
-                        onClick={() => onLike(m)} /></td>
-                    <td><button onClick={() => onDelete(m)} className="btn btn-danger">Delete</button></td>
-                </tr>)}
-
-            </tbody>
-        </table>
+        <Table
+            onSort={onSort}
+            sortColumn={sortColumn}
+            columns={columns}
+            data={paginatedMovies} />
     );
 }
 

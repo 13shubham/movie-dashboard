@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getMovies } from '../services/fakeMovieService';
-import Like from './common/Like';
 import Pagination from './common/Pagination';
 import { paginate } from '../utils/paginate';
 import Genre from './common/Genre';
@@ -57,7 +56,7 @@ const Movies = () => {
     return (
         <div className="row">
             <div className="col-3">
-                <Genre
+            <Genre
                     genres={genres}
                     currentGenre={currentGenre}
                     genreClicked={handleGenre} />
