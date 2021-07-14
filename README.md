@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Find below URL:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project hosted on Firebase. [Movie-Dashboard](https://movie-dashboard-81c67.web.app/movies).
 
 ## Available Scripts
 
