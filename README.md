@@ -1,6 +1,6 @@
 # Find below URL:
 
-This project hosted on Firebase. [Movie-Dashboard](https://movie-dashboard-81c67.web.app/movies).
+This project hosted on Firebase. [Movie-Dashboard](https://movie-dashboard-81c67.web.app/).
 
 ## Available Scripts
 
